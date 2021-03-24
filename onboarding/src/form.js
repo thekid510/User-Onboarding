@@ -9,7 +9,7 @@ export default function FriendForm(props) {
   };
 
   const onChange = (evt) => {
-    /* 🔥 FIX THIS SO IT ALSO WORKS WITH CHECKBOXES */
+    
     const { name, value, type, checked } = evt.target;
     const valueToUse = type === "checkbox" ? checked : value;
     change(name, valueToUse);
@@ -18,13 +18,10 @@ export default function FriendForm(props) {
   return (
     <form className="form container" onSubmit={onSubmit}>
       <div className="form-group submit">
-        <h2>Add a Friend</h2>
-
-        {/* 🔥 DISABLE THE BUTTON */}
+        <h2>Register</h2>
         <button disabled={disabled}>submit</button>
-
         <div className="errors">
-          {/* 🔥 RENDER THE VALIDATION ERRORS HERE */}
+         
           <div>{errors.username}</div>
           <div>{errors.email}</div>
           <div>{errors.role}</div>
@@ -35,11 +32,9 @@ export default function FriendForm(props) {
       <div className="form-group inputs">
         <h4>General information</h4>
 
-        {/* ////////// TEXT INPUTS ////////// */}
-        {/* ////////// TEXT INPUTS ////////// */}
-        {/* ////////// TEXT INPUTS ////////// */}
+        
         <label>
-          Username&nbsp;
+          Password&nbsp;
           <input
             value={values.username}
             onChange={onChange}
@@ -58,9 +53,7 @@ export default function FriendForm(props) {
           />
         </label>
 
-        {/* ////////// DROPDOWN ////////// */}
-        {/* ////////// DROPDOWN ////////// */}
-        {/* ////////// DROPDOWN ////////// */}
+       
         <label>
           Role
           <select onChange={onChange} value={values.role} name="role">
@@ -71,66 +64,18 @@ export default function FriendForm(props) {
             <option value="tl">Team Lead</option>
           </select>
         </label>
-
-        {/* ////////// RADIO BUTTONS ////////// */}
-        {/* ////////// RADIO BUTTONS ////////// */}
-        {/* ////////// RADIO BUTTONS ////////// */}
-        <label>
-          Single
-          <input
-            type="radio"
-            name="civil"
-            value="single" // this option is 'hardcoded' and spread out (like dropdown)
-            checked={values.civil === "single"}
-            onChange={onChange}
-          />
-        </label>
-
-        <label>
-          Married
-          <input
-            type="radio"
-            name="civil"
-            value="married" // this option is 'hardcoded' and spread out (like dropdown)
-            checked={values.civil === "married"}
-            onChange={onChange}
-          />
-        </label>
       </div>
 
       <div className="form-group checkboxes">
-        <h4>Hobbies</h4>
-
-        {/* ////////// CHECKBOXES ////////// */}
-        {/* ////////// CHECKBOXES ////////// */}
-        {/* ////////// CHECKBOXES ////////// */}
+        <h4>Terms Of Service</h4>
         <label>
-          Hiking
+            Agree
           <input
             type="checkbox"
-            name="hiking"
-            checked={values.hiking}
+            name="Agree"
+            checked={values.agree}
             onChange={onChange}
           />
-        </label>
-
-        <label>
-          Reading
-          <input
-            type="checkbox"
-            name="reading"
-            checked={values.reading}
-            onChange={onChange}
-          ></input>
-        </label>
-        <label>
-          Coding
-          <input
-            type="checkbox"
-            name="coding"
-            checked={values.coding}
-            onChange={onChange}
-          ></input>
         </label>
       </div>
     </form>

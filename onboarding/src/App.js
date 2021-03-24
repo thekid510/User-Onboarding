@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 
-import FriendForm from "./src/form";
-// 🔥 STEP 1- CHECK THE ENDPOINTS IN THE README
-// 🔥 STEP 2- FLESH OUT FriendForm.js
-// 🔥 STEP 3- FLESH THE SCHEMA IN ITS OWN FILE
-// 🔥 STEP 4- IMPORT THE SCHEMA, AXIOS AND YUP
-import schema from "../validation/formSchema";
+import FriendForm from "../src/form";
+
+import schema from "./validation/formSchema";
 import axios from "axios";
 import * as yup from "yup";
 
 
-function Friend({ details }) {
+export function Friend({ details }) {
   if (!details) {
     return <h3>Working fetching your friend&apos;s details...</h3>
   }
@@ -20,42 +17,26 @@ function Friend({ details }) {
       <h2>{details.username}</h2>
       <p>Email: {details.email}</p>
       <p>Role: {details.role}</p>
-      <p>Civil: {details.civil}</p>
 
-      {
-        !!details.hobbies && !!details.hobbies.length &&
-        <div>
-          Hobbies:
-          <ul>
-            {details.hobbies.map((like, idx) => <li key={idx}>{like}</li>)}
-          </ul>
-        </div>
-      }
+      
     </div>
   )
 }
 
-export default Friend
+
 
 
 const initialFormValues = {
-  ///// TEXT INPUTS /////
   username: "",
   email: "",
-  ///// DROPDOWN /////
   role: "",
-  ///// RADIO BUTTONS /////
-  civil: "",
-  ///// CHECKBOXES /////
-  hiking: false,
-  reading: false,
-  coding: false,
+ Terms: false,
+  
 };
 const initialFormErrors = {
   username: "",
   email: "",
   role: "",
-  civil: "",
 };
 const initialFriends = [];
 const initialDisabled = true;
@@ -141,7 +122,7 @@ export default function App() {
       role: formValues.role.trim(),
       civil: formValues.civil.trim(),
       // 🔥 STEP 7- WHAT ABOUT HOBBIES?
-      hobbies: ["coding", "reading", "hiking"].filter(
+      Terms: ["agree"].filter(
         (hobby) => formValues[hobby]
       ),
     };
