@@ -18,6 +18,6 @@ export default yup.object().shape({
     .oneOf(["tl", "instructor", "alumni", "student"], "role is required"),
   
   // we are done with checkboxes
-  Terms: yup.boolean(),
+  Agree: yup.boolean(),
   
 });
