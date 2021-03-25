@@ -21,7 +21,7 @@ export default function UserForm(props) {
         <h2>Register</h2>
         <button disabled={disabled}>submit</button>
         <div className="errors">
-         
+          <div>{errors.username}</div>
           <div>{errors.password}</div>
           <div>{errors.email}</div>
           <div>{errors.role}</div>
@@ -31,14 +31,13 @@ export default function UserForm(props) {
 
       <div className="form-group inputs">
         <h4>General information</h4>
-
         
         <label>
-          Password&nbsp;
+          Name&nbsp;
           <input
-            value={values.password}
+            value={values.username}
             onChange={onChange}
-            name="password"
+            name="username"
             type="text"
           />
         </label>
@@ -52,6 +51,18 @@ export default function UserForm(props) {
             type="text"
           />
         </label>
+        
+        <label>
+          Password&nbsp;
+          <input
+            value={values.password}
+            onChange={onChange}
+            name="password"
+            type="text"
+          />
+        </label>
+
+       
 
        
         <label>

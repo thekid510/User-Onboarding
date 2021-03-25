@@ -9,11 +9,12 @@ import * as yup from "yup";
 
 export function Friend({ details }) {
   if (!details) {
-    return <h3>Working fetching your friend&apos;s details...</h3>
+    return <h3>Working fetching your user form &apos;s details...</h3>
   }
 
   return (
     <div className='friend container'>
+      <h1>{details.username} </h1>
       <h2>{details.password}</h2>
       <p>Email: {details.email}</p>
       <p>Role: {details.role}</p>
@@ -27,6 +28,7 @@ export function Friend({ details }) {
 
 
 const initialFormValues = {
+  username:"",
   password: "",
   email: "",
   role: "",
@@ -34,24 +36,26 @@ const initialFormValues = {
   
 };
 const initialFormErrors = {
+  username:"",
   password: "",
   email: "",
   role: "",
+  Terms: false,
 };
 const initialFriends = [];
 const initialDisabled = true;
 
 export default function App() {
  
-  const [friends, setFriends] = useState(initialFriends); // array of friend objects
-  const [formValues, setFormValues] = useState(initialFormValues); // object
-  const [formErrors, setFormErrors] = useState(initialFormErrors); // object
-  const [disabled, setDisabled] = useState(initialDisabled); // boolean
+  const [friends, setFriends] = useState(initialFriends);  
+  const [formValues, setFormValues] = useState(initialFormValues);  
+  const [formErrors, setFormErrors] = useState(initialFormErrors);  
+  const [disabled, setDisabled] = useState(initialDisabled);  
 
   const getFriends = () => {
 
     axios
-      .get("http://buddies.com/api/friends")
+      .get("http:buddies.com/api/friends")
       .then((res) => {
         setFriends(res.data);
       })
@@ -63,7 +67,7 @@ export default function App() {
   const postNewFriend = (newFriend) => {
     
     axios
-      .post("http://buddies.com/api/friends", newFriend)
+      .post("http:buddies.com/api/friends", newFriend)
       .then((res) => {
         setFriends([res.data, ...friends]);
         setFormValues(initialFormValues);
@@ -74,36 +78,37 @@ export default function App() {
   };
 
 
-  const inputChange = (password, value) => {
+  const inputChange = (name, value) => {
     yup
-    .reach(schema, password) 
+    .reach(schema, name) 
     .validate(value) 
     .then(() => {
      
       setFormErrors({
         ...formErrors,
-        [password]: "",
+        [name]: "",
       });
     })
     .catch((err) => {
       setFormErrors({
         ...formErrors,
-        [password]: err.errors[0],
+        [name]: err.errors[0],
       });
     });
     
     setFormValues({
       ...formValues,
-      [password]: value, 
+      [name]: value, 
     });
   };
 
   const formSubmit = () => {
     const newFriend = {
+      username: formValues.username.trim(),
       password: formValues.password.trim(),
       email: formValues.email.trim(),
       role: formValues.role.trim(),
-      civil: formValues.civil.trim(),
+      
       Terms: ["agree"].filter(
         (hobby) => formValues[hobby]
       ),

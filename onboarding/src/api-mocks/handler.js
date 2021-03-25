@@ -4,6 +4,7 @@ import { v4 as uuid } from 'uuid'
 const users = [
   {
     id: uuid(),
+    username:"james",
     password: 'Michael',
     email: 'michael@michael.com',
     role: 'student'
@@ -19,8 +20,8 @@ function getAllFriends(req, res, ctx) {
 }
 
 function createNewFriend(req, res, ctx) {
-  const { password, email, role, civil } = req.body
-  const requiredFields = { password, email, role, civil }
+  const {username, password, email, role } = req.body
+  const requiredFields = {username, password, email, role  }
 
   if (Object.values(requiredFields).some(field => (!field || !field.trim()))) {
     return res(
