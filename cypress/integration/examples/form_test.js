@@ -12,4 +12,16 @@ describe("Form App", ()=>{
         expect(1 + 2).to.equal(3);
         expect(2 + 2).not.to.equal(5);
       });
-})
+    it("running input tests", ()=>{
+        nameInput().should("have.value", "");
+        emailInput().should("have.value", "");
+        passwordInput().should("have.value", "");
+        termsInput().should("not.be.checked");
+
+        nameInput().type("James Freund");
+        nameInput().should("have.value", "James Freund");
+        emailInput().type("jamesf@gmail.com");
+        passwordInput().type("codingisfun");
+        submitButton().should("be disabled");
+    });
+});
