@@ -1,31 +1,26 @@
 import { rest } from 'msw'
 import { v4 as uuid } from 'uuid'
 
-const friends = [
+const users = [
   {
     id: uuid(),
-    username: 'Michael',
+    password: 'Michael',
     email: 'michael@michael.com',
-    role: 'student',
-    civil: 'single',
-    hobbies: [
-      'hiking',
-      'reading',
-      'coding',
-    ],
+    role: 'student'
+   
   },
 ]
 
 function getAllFriends(req, res, ctx) {
   return res(
     ctx.status(200),
-    ctx.json(friends),
+    ctx.json(users),
   )
 }
 
 function createNewFriend(req, res, ctx) {
-  const { username, email, role, civil } = req.body
-  const requiredFields = { username, email, role, civil }
+  const { password, email, role, civil } = req.body
+  const requiredFields = { password, email, role, civil }
 
   if (Object.values(requiredFields).some(field => (!field || !field.trim()))) {
     return res(
@@ -42,7 +37,7 @@ function createNewFriend(req, res, ctx) {
   }
 
   const newFriend = { id: uuid(), ...req.body }
-  friends.unshift(newFriend)
+  users.unshift(newFriend)
 
   return res(
     ctx.status(201),
@@ -51,6 +46,6 @@ function createNewFriend(req, res, ctx) {
 }
 
 export const handlers = [
-  rest.get('http://buddies.com/api/friends', getAllFriends),
-  rest.post('http://buddies.com/api/friends', createNewFriend),
+  rest.get('https://reqres.in/api/users', getAllFriends),
+  rest.post('https://reqres.in/api/users', createNewFriend),
 ]

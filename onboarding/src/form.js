@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function FriendForm(props) {
+export default function UserForm(props) {
   const { values, submit, change, disabled, errors } = props;
 
   const onSubmit = (evt) => {
@@ -22,10 +22,10 @@ export default function FriendForm(props) {
         <button disabled={disabled}>submit</button>
         <div className="errors">
          
-          <div>{errors.username}</div>
+          <div>{errors.password}</div>
           <div>{errors.email}</div>
           <div>{errors.role}</div>
-          <div>{errors.civil}</div>
+          
         </div>
       </div>
 
@@ -36,9 +36,9 @@ export default function FriendForm(props) {
         <label>
           Password&nbsp;
           <input
-            value={values.username}
+            value={values.password}
             onChange={onChange}
-            name="username"
+            name="password"
             type="text"
           />
         </label>
