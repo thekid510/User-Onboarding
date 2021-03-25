@@ -4,5 +4,8 @@
     "msw": "^0.27.2",
     "nsw": "^0.1.0",
     "yup": "^0.32.9"
+  },
+  "devDependencies": {
+    "cypress": "^6.8.0"
   }
 }
