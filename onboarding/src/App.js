@@ -103,6 +103,7 @@ export default function App() {
   };
 
   const formSubmit = () => {
+    setFormValues(initialFormValues)
     const newFriend = {
       username: formValues.username.trim(),
       password: formValues.password.trim(),
@@ -113,6 +114,7 @@ export default function App() {
         (hobby) => formValues[hobby]
       ),
     };
+    
     postNewFriend(newFriend);
   };
 
