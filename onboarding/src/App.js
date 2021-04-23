@@ -42,22 +42,22 @@ const initialFormErrors = {
   role: "",
   Terms: false,
 };
-const initialFriends = [];
+const initialusers = [];
 const initialDisabled = true;
 
 export default function App() {
  
-  const [friends, setFriends] = useState(initialFriends);  
+  const [users, setusers] = useState(initialusers);  
   const [formValues, setFormValues] = useState(initialFormValues);  
   const [formErrors, setFormErrors] = useState(initialFormErrors);  
   const [disabled, setDisabled] = useState(initialDisabled);  
 
-  const getFriends = () => {
+  const getusers = () => {
 
     axios
-      .get("http:buddies.com/api/friends")
+      .get("http:buddies.com/api/users")
       .then((res) => {
-        setFriends(res.data);
+        setusers(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -67,9 +67,9 @@ export default function App() {
   const postNewFriend = (newFriend) => {
     
     axios
-      .post("http:buddies.com/api/friends", newFriend)
+      .post("http:buddies.com/api/users", newFriend)
       .then((res) => {
-        setFriends([res.data, ...friends]);
+        setusers([res.data, ...users]);
         setFormValues(initialFormValues);
       })
       .catch((err) => {
@@ -119,7 +119,7 @@ export default function App() {
   };
 
   useEffect(() => {
-    getFriends();
+    getusers();
   }, []);
 
   
@@ -144,7 +144,7 @@ export default function App() {
         errors={formErrors}
       />
 
-      {friends.map((friend) => {
+      {users.map((friend) => {
         return <Friend key={friend.id} details={friend} />;
       })}
     </div>
