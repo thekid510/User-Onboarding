@@ -1,8 +1,8 @@
 import React from 'react'
 
-export function User({ details }) {
+export default function User({ details }) {
     if (!details) {
-      return <h3>Working fetching your user form &apos;s details...</h3>
+      return null
     }
   
     return (
